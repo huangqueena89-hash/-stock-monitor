@@ -1,0 +1,29 @@
+name: A-Share Stock Monitor
+
+on:
+  schedule:
+    - cron: '30 1 * * 1-5'   # 09:30 CST
+    - cron: '30 2 * * 1-5'   # 10:30 CST
+    - cron: '30 3 * * 1-5'   # 11:30 CST
+    - cron: '30 5 * * 1-5'   # 13:30 CST
+    - cron: '30 6 * * 1-5'   # 14:30 CST
+  workflow_dispatch:           # 允许手动触发测试
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run stock monitor
+        env:
+          SERVERCHAN_KEY: ${{ secrets.SERVERCHAN_KEY }}
+        run: python stock_monitor.py
