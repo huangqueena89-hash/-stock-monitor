@@ -20,7 +20,7 @@ STOCKS = {
     "600745": "闻泰科技",
     "600105": "永鼎股份",
     "600089": "特变电工",
-    "001301": "佳力图",
+    "001301": "尚太科技",
 }
 SERVER_CHAN_URL = f"https://sctapi.ftqq.com/{SENDKEY}.send"
 
